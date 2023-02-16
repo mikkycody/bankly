@@ -12,12 +12,12 @@ const signUp = async (payload) => {
   const updatedUserData = { ...userData, password: hashedPassword };
   const user = await User.create(updatedUserData);
   const newUser = user.toJSON();
-  delete newUser.password;
+  delete newUser.password
   return mergeUserWithToken(newUser);
 };
 
 const signIn = async (payload) => {
-  const user = await User.findOne({ email: payload.email });
+  const user = await User.findOne({ email: payload.email }).select("+password");
   if (!user) {
     throwInvalidCredentialsError();
   }
@@ -28,7 +28,9 @@ const signIn = async (payload) => {
   if (!verifyPassword) {
     throwInvalidCredentialsError();
   }
-  return mergeUserWithToken(user.toJSON());
+  const authUser = user.toJSON();
+  delete authUser.password;
+  return mergeUserWithToken(authUser);
 };
 
 const refreshAccessToken = async (token) => {
@@ -42,7 +44,6 @@ const refreshAccessToken = async (token) => {
     throw new AppError("Invalid refresh token", HttpStatus.FORBIDDEN);
   }
   const user = await User.findById(userId);
-  delete user.password
   return mergeUserWithToken(user.toJSON());
 };
 

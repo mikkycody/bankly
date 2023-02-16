@@ -2,7 +2,6 @@ import Joi from "joi";
 import User from "../../models/user";
 
 const checkIfExists = async (value) => {
-  console.log(value);
   const user = await User.findOne({ email: value });
   if (!user) {
     throw new Error(`Beneficiary not found.`);
