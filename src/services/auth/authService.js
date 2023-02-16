@@ -42,6 +42,7 @@ const refreshAccessToken = async (token) => {
     throw new AppError("Invalid refresh token", HttpStatus.FORBIDDEN);
   }
   const user = await User.findById(userId);
+  delete user.password
   return mergeUserWithToken(user.toJSON());
 };
 
