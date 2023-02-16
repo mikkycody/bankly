@@ -31,7 +31,7 @@ Documentation is hosted at [https://documenter.getpostman.com/view/13274153/2s93
 
 ### Installation
 
-- Install [NodeJS](https://nodejs.org/) and [MySQL](https://www.mysql.com/) on your computer
+- Install [NodeJS](https://nodejs.org/) on your computer
 - Install [MongoDB](https://www.mongodb.com/docs/manual/administration/install-community/) globally
 - Clone this repository 
 - Use the `.env.example` file to setup your environmental variables and rename the file to `.env`
