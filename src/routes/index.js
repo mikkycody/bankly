@@ -1,4 +1,5 @@
 import express from "express";
+import adminRoutes from "./admin";
 import authRoutes from "./auth";
 import walletRoutes from "./wallet";
 
@@ -11,6 +12,7 @@ router.get("/", ({ res }) => {
   });
 });
 
+router.use("/admin/", adminRoutes);
 router.use("/auth/", authRoutes);
 router.use("/wallet/", walletRoutes);
 

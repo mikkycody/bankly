@@ -31,8 +31,11 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node src/dist/app.js",
-    "dev": "nodemon --exec babel-node src/app.js"
+    "start": "node dist/app.js",
+    "clean": "rm -rf dist/ && mkdir dist/",
+    "build": "npm run clean && babel src -d dist",
+    "dev": "nodemon --exec babel-node src/app.js",
+    "db:seed": "babel-node src/database/seeders/seeds.js"
   },
   "author": "Michael George",
   "license": "ISC",
